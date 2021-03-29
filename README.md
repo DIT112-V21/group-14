@@ -8,7 +8,7 @@ We will later add computer vision to it by taking screenshots and analyzing them
 We are making it to test/improve our coding skills and because we felt it’d be manageable and satisfying to complete, a fair challenge.
 
 # What problem does it solve?
-In current times boredom is the biggest problem for most of us. The goal of our app is to overcome that problem by letting the user dive into a virtual world. 
+In current times boredom is the biggest problem for most of us. The goal of our app is to overcome that problem by letting the user explore a virtual environment with a controllable car.
 
 # Technical information
 How will we make it?
