@@ -31,7 +31,6 @@ void loop()
     delay(3000);
     car.setAngle(0);
     car.setSpeed(30);
-    usDistance = front.getDistance();
   }
   if ((irDistance < 30) && (irDistance > 0))
   {
