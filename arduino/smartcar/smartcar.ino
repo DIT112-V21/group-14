@@ -17,18 +17,20 @@ SimpleCar car(control);
 void setup()
 {
     Serial.begin(9600);
-    car.setSpeed(20);
+    car.setSpeed(30);
 }
 
 void loop()
 {
-  if(front.getDistance() > 150)
+  if(front.getDistance() > 170)
   {
-    car.setAngle(30);
-    delay(2500);
+    car.setAngle(90);
+    car.setSpeed(15);
+    delay(3000);
     car.setAngle(0);
+    car.setSpeed(30);
   }
-  if (frontIR.getDistance() > 35)
+  if (frontIR.getDistance() > 30)
   {
     car.setSpeed(0);
   }
