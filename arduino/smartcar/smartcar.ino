@@ -22,20 +22,19 @@ void setup()
 
 void loop()
 {
-   int usDistance = front.getDistance();
-   int irDistance = frontIR.getDistance();
-  if((usDistance < 170) && (usDistance > 30) )
+  int usDistance = front.getDistance();
+  int irDistance = frontIR.getDistance();
+  if((usDistance < 170) && (usDistance > 30))
   {
     car.setAngle(90);
     car.setSpeed(15);
     delay(3000);
     car.setAngle(0);
     car.setSpeed(30);
-	usDistance = front.getDistance();
+    usDistance = front.getDistance();
   }
   if ((irDistance < 30) && (irDistance > 0))
   {
     car.setSpeed(0);
-	irDistance = frontIR.getDistance();
   }
 }
