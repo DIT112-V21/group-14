@@ -5,8 +5,9 @@ function createWindow () {
   const win = new BrowserWindow({
     icon: 'img/darkness_mcCroc.png',
     autoHideMenuBar: true,
-    width: 1221,
-    height: 835,
+    width: 1209,
+    height: 825,
+    resizable:false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     },
