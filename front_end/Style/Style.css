@@ -85,81 +85,80 @@ li{
     background: #19D3DA;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 14px;
+    cursor: pointer;
 }
 
 
 .background_colour{
   position: absolute;
-width: 1200px;
-height: 800px;
-
-background: #686D76;
-border-radius: 7px;
+  width: 1200px;
+  height: 800px;
+  background: #686D76;
+  border-radius: 7px;
 }
 
 .other_colour{
-width: 1100px;
-height: 700px;
-background-position: center center;
-background: #EEEEEE;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 7px;
-position: absolute;
-margin-top: 45px;
-margin-left: 45px;
+  width: 1100px;
+  height: 700px;
+  background-position: center center;
+  background: #EEEEEE;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  position: absolute;
+  margin-top: 45px;
+  margin-left: 45px;
 }
 
 #text-death{
   margin-top: 35px;
   margin-left: 245px;
-   position: absolute;
-
-    font-family: Saira Stencil One;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 70px;
-    line-height: 110px;
-    color: black;
+  position: absolute;
+  font-family: Saira Stencil One;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 110px;
+  color: black;
 }
 .buttons-page{
-    position: relative;
-    width: 199px;
-    height: 49px;
-    border: 0px;
-top: 250px;
-font-family: Saira;
-font-size: 18px;
-margin-left: 520px;
-margin-bottom: 25px;
-border: 1px solid black;
-display: block;
-text-align: center;
-background: #19D3DA;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 7px;
+  position: relative;
+  max-width: 199px;
+  max-height: 49px;
+  top: 250px;
+  padding: 13px 13px;
+  font-family: Saira;
+  font-size: 18px;
+  margin-left: 520px;
+  margin-bottom: 25px;
+  border: 1px solid black;
+  text-align: center;
+  background: #19D3DA;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  border-radius: 7px;
+  text-decoration: none;
+  color: black;
+  display: block;
 }
 #text-settings{
   margin-top: 35px;
   margin-left: 430px;
-   position: absolute;
-
-    font-family: Saira Stencil One;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 70px;
-    line-height: 110px;
-    color: black;
+  position: absolute;
+  font-family: Saira Stencil One;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 110px;
+  color: black;
 }
 #music-text{
   margin-top: 220px;
   margin-left: 55px;
-   position: absolute;
-
-    font-family: Merriweather;
-    font-style: normal;
-    font-size: 18px;
-    line-height: 23px;
-    color: black;
+  position: absolute;
+  font-family: Merriweather;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: black;
 }
 
 .container {
@@ -189,44 +188,43 @@ background: #19D3DA;
   transition: 0.4s;
   border-radius: 34px;
   border: 1px solid black;
-
 }
 
 .switch input {display: none}
 
 .slider:before{
-position: absolute;
-content: "";
-height: 20px;
-width: 21px;
-left: 1px;
-bottom: 1px;
-background-color: #373A40;
-transition: 0.4s;
-border-radius: 50px;
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 21px;
+  left: 1px;
+  bottom: 1px;
+  background-color: #373A40;
+  transition: 0.4s;
+  border-radius: 50px;
   }
 
-  input:checked + .slider
-  {
-    background-color: #19D3DA;
-  }
-  input:checked + .slider:before
-  {
-    transform: translate(20px);
-  }
+input:checked + .slider
+{
+  background-color: #19D3DA;
+}
+input:checked + .slider:before
+{
+  transform: translate(20px);
+}
 
-  .back-button{
-    Top: -43px;
-    Left: -45px;
-    position: relative;
-    width: 45px;
-    height: 45px;
-  }
+.back-button{
+  Top: -43px;
+  Left: -45px;
+  position: relative;
+  width: 45px;
+  height: 45px;
+}
 #xbox-controller{
   width: 345px;
   height: 232px;
   position: relative;
-top: 450px;
+  top: 450px;
 }
 #backup-camera{
   width: 830px;
@@ -239,15 +237,13 @@ top: 450px;
   position: absolute;
   width: 180px;
   height: 630px;
-  top: 70px;
+  top: 85px;
   left: 75px;
-
   background: #EEEEEE;
   border: 1px solid #373A40;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 7px;
-line-height: 1.8;
-padding-left: 8px;
-padding-top: 10px;
+  padding-left: 8px;
+  padding-top: 10px;
 }
