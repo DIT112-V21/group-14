@@ -15,7 +15,7 @@
     <p id="music-text">Music</p>
     <div class="container">
       <label class="switch">
-        <input type="checkbox">
+        <input type="checkbox" id = "music-toggle" onclick="musicControl()">
         <span class="slider"></span>
       </label>
     </div>
@@ -26,7 +26,7 @@
     <a class="dark-mode-switch" href="Settings.html"></a>
     <div class="container">
       <label class="switch">
-        <input type="checkbox">
+        <input type="checkbox" checked>
         <span class="slider" href="Settings.html"></span>
       </label>
     </div>
@@ -34,4 +34,40 @@
   <img id="xbox-controller"src="img/xbox-controller.png" alt="xbox-controller">
 
 </body>
+
+<audio id ="elevatorbossnova" loop>
+  <source src="audio\music\elevatorbossnova.mp3" type="audio/mpeg">
+Your browser does not support the music element.
+</audio>
+
+<script>
+  var tune = document.getElementById("elevatorbossnova");
+  var muteCheckbox = document.getElementById("music-toggle");
+
+  window.onload = function pageStart() {
+    tune.currentTime = sessionStorage.getItem("audioLengthSettings");
+    if (sessionStorage.getItem("musicOn") == "muted") {
+      tune.autoplay = 0
+    } else tune.autoplay = 1;
+
+  // The muted button will revert to unchecked if you leave
+  if (sessionStorage.getItem("musicOn") == "muted") {
+        muteCheckbox.checked = true;
+    }
+  }
+  window.onbeforeunload = function musicUpdate() {
+    sessionStorage.setItem("audioLengthSettings", tune.currentTime);
+  }
+
+  function musicControl(){
+    if (muteCheckbox.checked == true) {
+      sessionStorage.setItem("musicOn", "muted");
+      tune.pause();
+    } else {
+      sessionStorage.setItem("musicOn", "unmuted");
+      tune.play();
+    }
+  }
+  </script>
+
 </html>

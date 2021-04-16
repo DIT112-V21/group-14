@@ -16,4 +16,24 @@
   <a class="buttons-page" href="Settings-dark.html"> Settings</a>
   <a class="buttons-page" href="index.html"> Log out</a>
 </body>
+
+<audio id ="myTune" loop>
+  <source src="audio\music\runninginthe90sVaporwave.mp3" type="audio/mpeg">
+Your browser does not support the music element.
+</audio>
+
+<script>
+var tune = document.getElementById("myTune");
+
+window.onload = function musicStart() {
+  tune.currentTime = sessionStorage.getItem("audioLength");
+    if (sessionStorage.getItem("musicOn") == "muted") {
+      tune.autoplay = 0
+    } else tune.autoplay = 1;
+}
+window.onbeforeunload = function musicUpdate() {
+  sessionStorage.setItem("audioLength", tune.currentTime);
+}
+</script>
+
 </html>

@@ -7,13 +7,34 @@
 </head>
 <body class="background_colour">
 
+
   <div class="other_colour">
     <h2 id="text-death">Darkness McCROC</h2>
   </div>
 
   <a class="buttons-page" href="connect-to-car.html"> Connect To Car</a>
-  <a class="buttons-page" href=""> Some Other Button</a>
   <a class="buttons-page" href="Settings.html"> Settings</a>
   <a class="buttons-page" href="index.html"> Log out</a>
+  <a class="buttons-page" href=""> Credits</a>
 </body>
+
+<!-- Audio must be put at the end to not cause misalignments -->
+<audio id ="myTune" loop>
+  <source src="audio\music\runninginthe90sVaporwave.mp3" type="audio/mpeg">
+Your browser does not support the music element.
+</audio>
+
+<script>
+var tune = document.getElementById("myTune");
+
+window.onload = function musicStart() {
+  tune.currentTime = sessionStorage.getItem("audioLength");
+    if (sessionStorage.getItem("musicOn") == "muted") {
+      tune.autoplay = 0
+    } else tune.autoplay = 1;
+}
+window.onbeforeunload = function musicUpdate() {
+  sessionStorage.setItem("audioLength", tune.currentTime);
+}
+</script>
 </html>

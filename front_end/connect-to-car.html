@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="Style/Style.css">
+
   <title></title>
 </head>
 <body class="background_colour">
@@ -22,7 +23,29 @@
     <p class="status", id="battery">Battery capasity: 400 mA</p>
     <p class="status", id="charge">Charge remaining: 68%</p>
   </div>
-
   <script src="Scripts.js"></script>
-</body>
+</body>pl
+
+<audio id ="myTune" loop>
+  <source src="audio\music\runninginthe90sVaporwave.mp3" type="audio/mpeg">
+Your browser does not support the music element.
+</audio>
+
+<script>
+var tune = document.getElementById("myTune");
+
+window.onload = function musicStart() {
+  tune.currentTime = sessionStorage.getItem("audioLength");
+    if (sessionStorage.getItem("musicOn") == "muted") {
+      tune.autoplay = 0
+    } else tune.autoplay = 1;
+}
+window.onbeforeunload = function musicUpdate() {
+  sessionStorage.setItem("audioLength", tune.currentTime);
+}
+</script>
+
+</script>
+
+
 </html>
