@@ -22,8 +22,6 @@
     <p class="status", id="battery">Battery capasity: 400 mA</p>
     <p class="status", id="charge">Charge remaining: 68%</p>
   </div>
-
-  <script src="Scripts.js"></script>
 </body>
 
 <audio id ="myTune" loop>
@@ -31,18 +29,7 @@
 Your browser does not support the music element.
 </audio>
 
-<script>
-var tune = document.getElementById("myTune");
-
-window.onload = function musicStart() {
-  tune.currentTime = sessionStorage.getItem("audioLength");
-    if (sessionStorage.getItem("musicOn") == "muted") {
-      tune.autoplay = 0
-    } else tune.autoplay = 1;
-}
-window.onbeforeunload = function musicUpdate() {
-  sessionStorage.setItem("audioLength", tune.currentTime);
-}
-</script>
+<script src="music.js"></script>
+<script src="Scripts.js"></script>
 
 </html>
