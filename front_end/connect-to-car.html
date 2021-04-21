@@ -2,8 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="Style/Style.css">
-
+  <link rel="stylesheet" id = "pagestyle" href="Style/Lightmode.css">
   <title></title>
 </head>
 <body class="background_colour">
@@ -25,12 +24,19 @@
   </div>
 </body>pl
 
-<audio id ="myTune" loop>
+<audio id ="backgroundMusic" loop>
   <source src="audio\music\runninginthe90sVaporwave.mp3" type="audio/mpeg">
 Your browser does not support the music element.
 </audio>
 
 <script src="music.js"></script>
+<script src="styleToggling.js"></script>
 <script src="Scripts.js"></script>
+<script>
+  window.onload = function start(){
+  musicStart();
+  styleStart();
+}
+</script>
 
 </html>
