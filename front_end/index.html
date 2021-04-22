@@ -7,26 +7,21 @@
     <link rel="stylesheet" href="Style/Lightmode.css">
 </head>
 <body>
-    <div>
-        <img src="img/darkness_mcCroc.png" alt="the_croc">
-        <h1>Welcome to the virtual car app <br> Codename: Darkness McCroc</h1>
 
-    </div>
-    <div>
-        <h1>Welcome to here!</h1>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3">
+</div>
 
-        <form>
-            <ul>
-                <li>
-                    <label for="username">Username: </label>
-                    <input type="text" class="login" required>
-                </li>
-                <li>
-                    <label for="password">Password: </label>
-                    <input type="password" class="login" required>
-                </li>
-            </ul>
-            <button id="start-Screen" type="submit" formaction="mainMenu.html">Login</button>
+<a href="easter-egg.html"><img class="the_croc" src="img/darkness_mcCroc.png" alt="button"></a>
+
+   <h1 id="app-name">Welcome to the virtual car app <br> Codename: Darkness McCroc</h1>
+    <div>
+
+        <form class="form">
+                    <input type="text" placeholder="Username" required>
+                    <input type="password" placeholder="Password"  required>
+                    <button type="submit" id="login-button" formaction="mainMenu.html">Login</button>
         </form>
     </div>
 </body>
