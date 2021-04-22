@@ -1,0 +1,27 @@
+name: Application CI
+on: [push, pull_request]
+
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    env: 
+      working-directory: ./front_end
+    
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+      - name: Install NPM dependencies, build and test
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm ci
+        working-directory: ${{env.working-directory}}
+      - run: npm run build --if-present
+        working-directory: ${{env.working-directory}}
+      - run: npm test
+        working-directory: ${{env.working-directory}}
