@@ -2,9 +2,11 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="Style/Style.css">
+    <link id = "pagestyle" rel="stylesheet" href="Style/Lightmode.css" type="text/css"> 
     <title></title>
 </head>
+
+
 <body class="background_colour">
 
 
@@ -19,11 +21,13 @@
 </body>
 
 <!-- Audio must be put at the end to not cause misalignments -->
-<audio id ="myTune" loop>
+<audio id ="backgroundMusic" loop>
   <source src="audio\music\runninginthe90sVaporwave.mp3" type="audio/mpeg">
 Your browser does not support the music element.
 </audio>
 
-<script src="music.js"></script>
+<script src= "music.js"></script>
+<script src= "styleToggling.js"></script>
+<script src="onLoad.js"></script>
 
 </html>

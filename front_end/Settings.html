@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="Style/Style.css">
+  <link rel="stylesheet" id = "pagestyle" href="Style/Lightmode.css">
 
   <title></title>
 </head>
@@ -23,10 +23,9 @@
     <br>
     <br>
     <p id="music-text">Dark mode</p>
-    <a class="dark-mode-switch" href="Settings-dark.html"></a>
     <div class="container">
       <label class="switch">
-        <input type="checkbox">
+        <input type="checkbox" id = "darkmode-checkbox" onclick = "styleControl()">
         <span class="slider"></span>
       </label>
     </div>
@@ -34,11 +33,12 @@
   <img id="xbox-controller"src="img/xbox-controller.png" alt="xbox-controller">
 
 </body>
-<audio id ="elevatorbossnova" loop>
+<audio id ="backgroundMusic" loop>
   <source src="audio\music\elevatorbossnova.mp3" type="audio/mpeg">
 Your browser does not support the music element.
 </audio>
 
-<script src="musicSettings.js"></script>
-
+<script src="music.js"></script>
+<script src="styleToggling.js"></script>
+<script src="onLoad.js"></script>
 </html>

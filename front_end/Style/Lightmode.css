@@ -1,3 +1,8 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url("fonts/DoctorGlitch.otf");
+}
+
 body{
     overflow: hidden;
     position: absolute;
@@ -113,7 +118,7 @@ li{
   margin-top: 35px;
   margin-left: 245px;
   position: absolute;
-  font-family: Saira Stencil One;
+  font-family: myFontFamily;
   font-style: normal;
   font-weight: bold;
   font-size: 70px;
