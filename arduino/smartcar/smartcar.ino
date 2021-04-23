@@ -1,9 +1,13 @@
 #include <Smartcar.h>
+#include <MQTT.h>
+#include <WiFi.h>
 
 const int TRIGGER_PIN           = 6; 
 const int ECHO_PIN              = 7; 
 const unsigned int MAX_DISTANCE = 200;
 const int FRONT_PIN = 0;
+const auto oneSecond = 1000UL;
+MQTTClient mqtt;
 
 ArduinoRuntime arduinoRuntime;
 SR04 front(arduinoRuntime, TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
@@ -16,24 +20,33 @@ SimpleCar car(control);
 
 void setup()
 {
-    Serial.begin(9600);
-    car.setSpeed(30);
+  Serial.begin(9600);
+  mqtt.begin(WiFi);
+  if (mqtt.connect("arduino", "public", "public")) {
+    mqtt.subscribe("/smartcar/control/#", 1);
+    mqtt.onMessage([](String topic, String message) {
+      if (topic  == "/smartcar/control/throttle") {
+        car.setSpeed(message.toInt());
+      } else if(topic == "/smartcar/control/steering") {
+        car.setAngle(message.toInt());
+      } else {
+      Serial.println("Topic: " + topic + " Message: " + message);
+      }
+    });
+  }
 }
 
 void loop()
 {
-  int usDistance = front.getDistance();
-  int irDistance = frontIR.getDistance();
-  if((usDistance < 170) && (usDistance > 30))
-  {
-    car.setAngle(90);
-    car.setSpeed(15);
-    delay(3000);
-    car.setAngle(0);
-    car.setSpeed(30);
+  if (mqtt.connected()){
+    mqtt.loop();
   }
-  if ((irDistance < 30) && (irDistance > 0))
-  {
-    car.setSpeed(0);
+  static long previousTransmission = 0;
+  const auto currentTime = millis();
+  if (currentTime - previousTransmission >= oneSecond) {
+    previousTransmission = currentTime;
+    mqtt.publish("/smartcar/sensors/ultra", String(front.getDistance()));
+    mqtt.publish("/smartcar/sensors/infra", String(frontIR.getDistance()));
   }
+  delay(10);
 }
