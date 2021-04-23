@@ -8,7 +8,7 @@ function styleStart() {
 }
 
 function swapStyleSheet(sheet) {
-    document.getElementById("pagestyle").setAttribute("href", sheet);  
+    document.getElementById("pagestyle").setAttribute("href", sheet);
 }
 
 function styleControl(){
