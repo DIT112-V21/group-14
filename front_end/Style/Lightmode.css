@@ -5,92 +5,6 @@
 
 body{
     overflow: hidden;
-    position: absolute;
-    width: 1200px;
-    height: 800px;
-    background: #373A40;
-    border-radius: 7px;
-}
-
-body > div:nth-child(2){
-    height: 800px;
-    width: 667px;
-    top: -9px;
-    left: 533px;
-    position: absolute;
-    background: #EEEEEE;
-    border-radius: 7px;
-}
-
-img{
-    Top: 36px;
-    Left: 92px;
-    position: relative;
-    width: 350px;
-    height: 209px;
-}
-
-h1{
-    Top: 306px;
-    Left: 24px;
-    position: absolute;
-    width: 336px;
-    height: 76px;
-    font-family: Saira, Arial;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 38px;
-    color: #EEEEEE;
-}
-
-body > div:nth-child(2) > h1{
-    left: 578px;
-    top: 42px;
-    position: static;
-    width: 588px;
-    height: 113px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 72px;
-    line-height: 113px;
-    text-align: center;
-    color: #000000;
-}
-
-label{
-    margin: 15px;
-}
-
-li{
-    list-style-type:none;
-}
-
-.login{
-    left: 760px;
-    top: 359px;
-    position: static;
-    border: 0px;
-    width: 361px;
-    height: 30px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 14px;
-    margin: 50px;
-}
-
-#start-Screen{
-    left: 220px;
-    top: 30px;
-    position: relative;
-    width: 240px;
-    height: 34px;
-    border: 0px;
-    background: #19D3DA;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 14px;
-    cursor: pointer;
 }
 
 
@@ -219,28 +133,30 @@ input:checked + .slider:before
 }
 
 .back-button{
-  Top: -43px;
-  Left: -45px;
-  position: relative;
+
   width: 45px;
   height: 45px;
+  position: relative;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+
+
 #xbox-controller{
   width: 345px;
   height: 232px;
-  position: relative;
+  position: fixed;
   top: 450px;
+  left: 75px;
 }
 #backup-camera{
   width: 830px;
   height: 630px;
   left: 285px;
   top: 85px;
-  position: relative;
+  position: fixed;
 }
 .status-information{
-  position: absolute;
+  position: fixed;
   width: 180px;
   height: 630px;
   top: 85px;
@@ -298,4 +214,99 @@ input:checked + .slider:before
   border-radius: 7px;
   padding-left: 8px;
   padding-top: 10px;
+}
+.bg {
+  animation:slide 4s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #EEEEEE 50%, #373A40 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:5s;
+}
+
+.bg3 {
+  animation-duration:6s;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+.the_croc{
+    Top: -5px;
+    Left: -590px;
+    position: relative;
+    width: 10px;
+    height: 7px;
+}
+
+#app-name{
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  margin-top: 250px;
+  margin-left: 385px;
+}
+
+
+form input {
+  appearance: none;
+  outline: 0;
+  border: 1px solid #ffffff;
+  background-color:#ffffff;
+  width: 400px;
+  border-radius: 3px;
+  padding: 10px 15px;
+  position: relative;
+  top: -20px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: black;
+  transition-duration: 0.25s;
+  font-weight: 300;
+}
+form input:hover {
+  background-color: #ffffff;
+}
+form input:focus {
+  background-color: white;
+  width: 400px;
+  color: black;
+}
+form button {
+  appearance: none;
+  outline: 0;
+  background-color: #19D3DA;
+  border: 0;
+  padding: 10px 15px;
+  position: relative;
+  top: -20px;
+  left: 378px;
+  color: black;
+  border-radius: 3px;
+  width: 433px;
+  cursor: pointer;
+  font-size: 18px;
+  transition-duration: 0.25s;
+}
+form button:hover {
+  background-color: #19D3DA;
 }
