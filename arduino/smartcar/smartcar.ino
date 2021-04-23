@@ -2,12 +2,17 @@
 #include <MQTT.h>
 #include <WiFi.h>
 
+#ifndef __SMCE__
+WiFiClient net;
+#endif
+MQTTClient mqtt;
+
 const int TRIGGER_PIN           = 6; 
 const int ECHO_PIN              = 7; 
 const unsigned int MAX_DISTANCE = 200;
 const int FRONT_PIN = 0;
 const auto oneSecond = 1000UL;
-MQTTClient mqtt;
+
 
 ArduinoRuntime arduinoRuntime;
 SR04 front(arduinoRuntime, TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
@@ -21,7 +26,11 @@ SimpleCar car(control);
 void setup()
 {
   Serial.begin(9600);
+  #ifndef __SMCE__
+  mqtt.begin(net);
+  #else
   mqtt.begin(WiFi);
+  #endif
   if (mqtt.connect("arduino", "public", "public")) {
     mqtt.subscribe("/smartcar/control/#", 1);
     mqtt.onMessage([](String topic, String message) {
