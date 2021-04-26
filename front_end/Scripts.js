@@ -44,7 +44,7 @@ background.addEventListener('keyup', e => {
 
 
 
-function startAnimating(fps) {  //limit the output speed
+function startGamepad(fps) {  //limit the output speed
     fpsInterval = 1000 / fps;
     then = Date.now();
     startTime = then;
@@ -66,15 +66,6 @@ function updateGamepad(){
                     client.publish('/smartcar/control/buttons', String(gp.buttons.indexOf(button)))
                 }
             })
-            /*
-            if(gp.axes[0] > 0.15 || gp.axes[0] < -0.15) {
-                console.log(gp.axes[0], "left X");
-                client.publish('/smartcar/control/throttle', String(gp.axes[0]));
-            } 
-            if(gp.axes[1] > 0.15 || gp.axes[1] < -0.15) {
-                console.log(gp.axes[1], "left Y (inverted)");
-                client.publish('/smartcar/control/throttle', String(gp.axes[1]));
-            } // the left joystick */
             if(gp.axes[2] >= 0.2 || gp.axes[2] <= -0.2) {
                 console.log(gp.axes[2], "right X");
                 client.publish('/smartcar/control/steering', String(gp.axes[2]*45));
@@ -98,4 +89,4 @@ function updateGamepad(){
 
 
 
-startAnimating(5)
+startGamepad(5)
