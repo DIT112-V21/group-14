@@ -1,4 +1,14 @@
 var tune = document.getElementById("backgroundMusic");
+var slider = document.getElementById("volume");
+var output = document.getElementById("demo");
+
+output.innerHTML = slider.value;// this line should show the default value of slider
+
+
+//this code should update the current value of slider based on position 
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
 
 function musicStart() {
   tune.currentTime = sessionStorage.getItem("audioLengthSettings");
