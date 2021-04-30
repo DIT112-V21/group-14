@@ -6,14 +6,24 @@ var stop = false;
 var frameCount = 0;
 var $results = $("#results");
 var fps, fpsInterval, startTime, now, then, elapsed;
-let x, y = false;  //this is so that the constoller doesn't send inputs when it's not in use 
+let x, y = false;  //this is so that the controller doesn't send inputs when it's not in use 
+var manualShift = false;
+
+var gearNo = 1; // Car's default gear is 1
+
 
 
 const background = document.querySelector('html')
 background.addEventListener('keydown', (e)=> {
+    //Check the mode upon pressing W
     if(e.key == 'w'){
-        client.publish('/smartcar/control/throttle', '100')
-    }  
+        if(manualShift){
+            client.publish('/smartcar/control/throttle', String(gearNo * 20))
+        } else {
+            client.publish('/smartcar/control/throttle', '100')   
+        }
+    }
+    
     if(e.key == 's'){
         client.publish('/smartcar/control/throttle', '-100')
     }  
@@ -28,6 +38,35 @@ background.addEventListener('keydown', (e)=> {
 
 
 background.addEventListener('keyup', e => {
+    //Check whether manual mode is activated (requires M press)
+    if(e.key == 'm'){
+        manualShift = true;
+        //First time manual mode is activated, the car starts at first gear
+        gearNo = 1;
+        client.publish('/smartcar/control/throttle', String(gearNo * 20))
+    }
+    //Reactivate automatic mode (requires N press)
+    if(e.key == 'n'){
+        manualShift = false;
+    }
+    //Increment gear by pressing shift
+    if(e.key == 'Shift'){
+        //Limit the max gear to 5
+        if(gearNo < 5) {
+            gearNo++;
+        }
+        client.publish('/smartcar/control/throttle', String(gearNo * 20))
+    }
+
+    //Decrement gear by pressing CTRL
+    if(e.key == 'Control'){
+        //Limit the minimum gear to 1
+        if(gearNo > 1){
+            gearNo--;
+        }
+        client.publish('/smartcar/control/throttle', String(gearNo * 20))
+    }
+
     if(e.key == 'w'){
         client.publish('/smartcar/control/throttle', '0')
     }
