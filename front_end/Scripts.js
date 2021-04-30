@@ -8,6 +8,7 @@ var $results = $("#results");
 var fps, fpsInterval, startTime, now, then, elapsed;
 let x, y = false;  //this is so that the controller doesn't send inputs when it's not in use 
 var manualShift = false;
+var manual = {};
 
 var gearNo = 1; // Car's default gear is 1
 
@@ -22,6 +23,7 @@ background.addEventListener('keydown', (e)=> {
         } else {
             client.publish('/smartcar/control/throttle', '100')   
         }
+        manual[e.key] = true;
     }
     
     if(e.key == 's'){
@@ -43,14 +45,13 @@ background.addEventListener('keyup', e => {
         manualShift = true;
         //First time manual mode is activated, the car starts at first gear
         gearNo = 1;
-        client.publish('/smartcar/control/throttle', String(gearNo * 20))
     }
     //Reactivate automatic mode (requires N press)
     if(e.key == 'n'){
         manualShift = false;
     }
     //Increment gear by pressing shift
-    if(e.key == 'Shift'){
+    if(e.key == 'Shift' && manualShift && manual['w']){
         //Limit the max gear to 5
         if(gearNo < 5) {
             gearNo++;
@@ -59,7 +60,7 @@ background.addEventListener('keyup', e => {
     }
 
     //Decrement gear by pressing CTRL
-    if(e.key == 'Control'){
+    if(e.key == 'Control' && manualShift && manual['w']){
         //Limit the minimum gear to 1
         if(gearNo > 1){
             gearNo--;
@@ -69,6 +70,7 @@ background.addEventListener('keyup', e => {
 
     if(e.key == 'w'){
         client.publish('/smartcar/control/throttle', '0')
+        manual[e.key] = false;
     }
     if(e.key == 's'){
         client.publish('/smartcar/control/throttle', '0') 
