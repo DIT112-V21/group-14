@@ -5,10 +5,13 @@ var output = document.getElementById("demo");
 output.innerHTML = slider.value;// this line should show the default value of slider
 
 
+
 //this code should update the current value of slider based on position 
 slider.oninput = function() {
   output.innerHTML = this.value;
 }
+
+function volumecontrol()
 
 function musicStart() {
   tune.currentTime = sessionStorage.getItem("audioLengthSettings");
