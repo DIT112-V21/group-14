@@ -16,16 +16,33 @@ ArduinoRuntime arduinoRuntime;
 BrushedMotor leftMotor(arduinoRuntime, smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(arduinoRuntime, smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
-SimpleCar car(control);
 
 const int TRIGGER_PIN = 6; 
 const int ECHO_PIN = 7; 
 const unsigned int MAX_DISTANCE = 200;
 const int FRONT_PIN = 0;
 const auto oneSecond = 1000UL;
-SR04 front(arduinoRuntime, TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
+const int GYROSCOPE_OFFSET = 37;
+const auto pulsesPerMeter = 400;
+
+DirectionlessOdometer leftOdometer{
+    arduinoRuntime,
+    smartcarlib::pins::v2::leftOdometerPin,
+    []() { leftOdometer.update(); },
+    pulsesPerMeter};
+
+DirectionlessOdometer rightOdometer{
+    arduinoRuntime,
+    smartcarlib::pins::v2::rightOdometerPin,
+    []() { rightOdometer.update(); },
+    pulsesPerMeter};
+
+GY50 gyro(arduinoRuntime, GYROSCOPE_OFFSET);
+SR04 frontUS(arduinoRuntime, TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 GP2Y0A21 frontIR(arduinoRuntime, FRONT_PIN); 
 
+
+SmartCar car(arduinoRuntime, control, gyro, leftOdometer, rightOdometer);
 
 void setup() {
   Serial.begin(9600);
@@ -65,8 +82,12 @@ void loop() {
     static auto previousTransmission = 0;
     if (currentTime - previousTransmission >= oneSecond) {
       previousTransmission = currentTime;
-      mqtt.publish("/smartcar/sensors/ultra", String(front.getDistance()));
+      mqtt.publish("/smartcar/sensors/ultra", String(frontUS.getDistance()));
       mqtt.publish("/smartcar/sensors/infra", String(frontIR.getDistance()));
+      gyro.update();
+      mqtt.publish("/smartcar/sensors/gyro", String(car.getHeading()));
+      mqtt.publish("/smartcar/sensors/distance", String(car.getDistance()));
+      mqtt.publish("/smartcar/sensors/speed", String(car.getSpeed()));
     }
   }
 #ifdef __SMCE__
