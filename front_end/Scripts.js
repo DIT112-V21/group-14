@@ -7,19 +7,22 @@ var frameCount = 0;
 var $results = $("#results");
 var fps, fpsInterval, startTime, now, then, elapsed;
 let x, y = false;  //this is so that the controller doesn't send inputs when it's not in use 
+
+// Variables required for manual drive mode
 var manualShift = false;
 var manual = {};
-
-var gearNo = 1; // Car's default gear is 1
-
+var currentGear = 1; // Car's default gear is 1
+var maxGear = 5;
+//Maximum throttle (100) divided by maximum gear (5) currently gives us 20 throttle per gear
+var throttlePerGear = 100 / maxGear;
 
 
 const background = document.querySelector('html')
 background.addEventListener('keydown', (e)=> {
-    //Check the mode upon pressing W
+    //Checks the mode upon pressing W
     if(e.key == 'w'){
         if(manualShift){
-            client.publish('/smartcar/control/throttle', String(gearNo * 20))
+            client.publish('/smartcar/control/throttle', String(currentGear * throttlePerGear))
         } else {
             client.publish('/smartcar/control/throttle', '100')   
         }
@@ -40,32 +43,32 @@ background.addEventListener('keydown', (e)=> {
 
 
 background.addEventListener('keyup', e => {
-    //Check whether manual mode is activated (requires M press)
+    //Checks whether manual mode is activated (requires M press)
     if(e.key == 'm'){
         manualShift = true;
         //First time manual mode is activated, the car starts at first gear
-        gearNo = 1;
+        currentGear = 1;
     }
-    //Reactivate automatic mode (requires N press)
+    //Reactivates automatic mode (requires N press)
     if(e.key == 'n'){
         manualShift = false;
     }
-    //Increment gear by pressing shift
+    //Increments gear by pressing shift
     if(e.key == 'Shift' && manualShift && manual['w']){
-        //Limit the max gear to 5
-        if(gearNo < 5) {
-            gearNo++;
+        //Limits the max gear
+        if(currentGear < maxGear) {
+            currentGear++;
         }
-        client.publish('/smartcar/control/throttle', String(gearNo * 20))
+        client.publish('/smartcar/control/throttle', String(currentGear * throttlePerGear))
     }
 
-    //Decrement gear by pressing CTRL
+    //Decrements gear by pressing CTRL
     if(e.key == 'Control' && manualShift && manual['w']){
-        //Limit the minimum gear to 1
-        if(gearNo > 1){
-            gearNo--;
+        //Limits the minimum gear to 1
+        if(currentGear > 1){
+            currentGear--;
         }
-        client.publish('/smartcar/control/throttle', String(gearNo * 20))
+        client.publish('/smartcar/control/throttle', String(currentGear * throttlePerGear))
     }
 
     if(e.key == 'w'){
@@ -85,7 +88,7 @@ background.addEventListener('keyup', e => {
 
 
 
-function startGamepad(fps) {  //limit the output speed
+function startGamepad(fps) {  //limits the output speed
     fpsInterval = 1000 / fps;
     then = Date.now();
     startTime = then;
