@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>5y6786.PNG</filename>
+	<path>C:\Users\EnisB\Desktop\cv-DIT112\images\5y6786.PNG</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>509</width>
+		<height>374</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>rock</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>38</xmin>
+			<ymin>74</ymin>
+			<xmax>509</xmax>
+			<ymax>374</ymax>
+		</bndbox>
+	</object>
+</annotation>

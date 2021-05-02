@@ -1,0 +1,6 @@
+model_checkpoint_path: "model.ckpt-3690"
+all_model_checkpoint_paths: "model.ckpt-3293"
+all_model_checkpoint_paths: "model.ckpt-3395"
+all_model_checkpoint_paths: "model.ckpt-3511"
+all_model_checkpoint_paths: "model.ckpt-3615"
+all_model_checkpoint_paths: "model.ckpt-3690"
