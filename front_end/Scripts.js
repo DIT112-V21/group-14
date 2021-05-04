@@ -38,7 +38,6 @@ background.addEventListener('keydown', (e)=> {
     if (e.key == 'd'){
         client.publish('/smartcar/control/steering', '45')
     } 
-    console.log(e.key)
 })
 
 
@@ -131,6 +130,38 @@ function updateGamepad(){
     }
 }
 
-
-
 startGamepad(5)
+
+
+
+client.on('connect', () =>{
+    client.subscribe('/smartcar/sensors/#', e => {})
+})
+
+//https://www.youtube.com/watch?v=nMUMZ5YRxHI
+//https://stackoverflow.com/questions/21300921/how-to-convert-byte-array-to-image-in-javascript/21302108
+//https://stackoverflow.com/questions/66672867/convert-framebuffer-dump-to-imagebmp-png-etc
+client.on('message', function (topic, message) {
+    // message is Buffer
+    if(topic.includes('camera')) {
+        let canvas = document.getElementById('backup-camera');
+        let ctx = canvas.getContext('2d');
+        var srcIndex = 0, dstIndex = 0;
+        let width = 640;
+        let height = 480;
+
+        var mImgData = ctx.createImageData(width, height);
+        for ( let i = 0; i < width * height; i ++) {
+            mImgData.data[dstIndex] = message[srcIndex];            // r
+            mImgData.data[dstIndex + 1] = message[srcIndex + 1];    // g
+            mImgData.data[dstIndex + 2] = message[srcIndex + 2];    // b
+            mImgData.data[dstIndex + 3] = 255; // 255 = 0xFF - constant alpha, 100% opaque
+            srcIndex += 3;
+            dstIndex += 4;
+        }
+        ctx.putImageData(mImgData, 0, 0);
+
+    } else {
+        console.log(topic.toString(), message.toString());
+    }
+})

@@ -49,7 +49,7 @@ void setup() {
 #ifndef __SMCE__
   mqtt.begin(net);
 #else
-  Camera.begin(QVGA, RGB888, 15);
+  Camera.begin(VGA, RGB888, 30);
   frameBuffer.resize(Camera.width() * Camera.height() * Camera.bytesPerPixel());
   mqtt.begin(WiFi);
 #endif
@@ -76,7 +76,7 @@ void loop() {
     if (currentTime - previousFrame >= 65) {
       previousFrame = currentTime;
       Camera.readFrame(frameBuffer.data());
-      mqtt.publish("/smartcar/camera", frameBuffer.data(), frameBuffer.size(), false, 0);
+      mqtt.publish("/smartcar/sensors/camera", frameBuffer.data());
     }
 #endif
     static auto previousTransmission = 0;
