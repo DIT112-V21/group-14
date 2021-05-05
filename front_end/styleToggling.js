@@ -1,7 +1,7 @@
 var darkmodeCheckbox = document.getElementById("darkmode-checkbox");
 
 function styleStart() {
-  if (sessionStorage.getItem("styleSetting") == "darkmode") {
+  if (localStorage.getItem("styleSetting") == "darkmode") {
     swapStyleSheet("Style/Darkmode.css");
     darkmodeCheckbox.checked = true;
   } else swapStyleSheet("Style/Lightmode.css");
@@ -13,10 +13,10 @@ function swapStyleSheet(sheet) {
 
 function styleControl(){
   if (darkmodeCheckbox.checked == true) {
-    sessionStorage.setItem("styleSetting", "darkmode");
+    localStorage.setItem("styleSetting", "darkmode");
     swapStyleSheet("Style/Darkmode.css");
   } else {
-    sessionStorage.setItem("styleSetting", "lightmode");
+    localStorage.setItem("styleSetting", "lightmode");
     swapStyleSheet("Style/Lightmode.css");
   }
 }

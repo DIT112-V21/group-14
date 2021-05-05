@@ -7,7 +7,6 @@ body{
     overflow: hidden;
 }
 
-
 .background_colour{
   position: absolute;
   width: 1200px;
@@ -82,11 +81,12 @@ body{
 
 .container {
   position: absolute;
-  margin-top: 220px;
-  left: 90%;
-  transform: translate(-50%,-50%);
+  margin-top: 223px;
+  left: 88%;
+  transform: translate(-60%,0%);
   text-align: center;
 }
+
 
 .switch{
   position: relative;
@@ -96,6 +96,18 @@ body{
   margin: 0 10px;
 }
 
+.range{
+position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  transition: 0.4s;
+  border-radius: 34px;
+  border: 1px solid black;
+}
 .slider{
   position: absolute;
   cursor: pointer;
@@ -108,6 +120,7 @@ body{
   border-radius: 34px;
   border: 1px solid black;
 }
+
 
 .switch input {display: none}
 
@@ -131,7 +144,6 @@ input:checked + .slider:before
 {
   transform: translate(20px);
 }
-
 .back-button{
 
   width: 45px;
