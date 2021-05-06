@@ -1,10 +1,20 @@
 var darkmodeCheckbox = document.getElementById("darkmode-checkbox");
 
 function styleStart() {
-  if (localStorage.getItem("styleSetting") == "darkmode") {
-    swapStyleSheet("Style/Darkmode.css");
-    darkmodeCheckbox.checked = true;
-  } else swapStyleSheet("Style/Lightmode.css");
+    dynamicClasses = document.querySelectorAll('[class^=dynamic]')
+    dynamicClasses.forEach(element => {
+      var relevantClass = element.className;
+      if (sessionStorage.getItem("styleSetting") == "darkmode") {
+        relevantClass = element.className + "-dark";
+        try{
+          darkmodeCheckbox.checked = true;
+        }catch (e) {}
+
+      } else if (relevantClass.includes("-dark")){
+        relevantClass = relevantClass.replace("-dark", "");
+      } // this is to avoid e.g. dynamic_background_colour-dark-dark
+      element.setAttribute("class", relevantClass);
+    });
 }
 
 function swapStyleSheet(sheet) {
@@ -13,10 +23,10 @@ function swapStyleSheet(sheet) {
 
 function styleControl(){
   if (darkmodeCheckbox.checked == true) {
-    localStorage.setItem("styleSetting", "darkmode");
-    swapStyleSheet("Style/Darkmode.css");
+    sessionStorage.setItem("styleSetting", "darkmode");
+    styleStart();
   } else {
-    localStorage.setItem("styleSetting", "lightmode");
-    swapStyleSheet("Style/Lightmode.css");
+    sessionStorage.setItem("styleSetting", "lightmode");
+    styleStart();
   }
 }
