@@ -16,10 +16,6 @@ function styleStart() {
       element.setAttribute("class", relevantClass);
     });
 }
-function updateStyles() {
-
-
-}
 
 function swapStyleSheet(sheet) {
     document.getElementById("pagestyle").setAttribute("href", sheet);
