@@ -16,6 +16,8 @@ var maxGear = 5;
 //Maximum throttle (100) divided by maximum gear (5) currently gives us 20 throttle per gear
 var throttlePerGear = 100 / maxGear;
 
+var cruiseControl = false;
+
 
 const background = document.querySelector('html')
 background.addEventListener('keydown', (e)=> {
@@ -42,6 +44,16 @@ background.addEventListener('keydown', (e)=> {
 
 
 background.addEventListener('keyup', e => {
+    //Activates/Deactivates cruise control if K is pressed 
+    if(e.key == 'c'){
+        if(!cruiseControl){
+            cruiseControl = true;
+        } else {
+            cruiseControl = false;
+            // The car will slow down when cruise control is deactivated
+            client.publish('/smartcar/control/throttle', '0');
+        }
+    }
     //Checks whether manual mode is activated (requires M press)
     if(e.key == 'm'){
         manualShift = true;
@@ -70,12 +82,13 @@ background.addEventListener('keyup', e => {
         client.publish('/smartcar/control/throttle', String(currentGear * throttlePerGear))
     }
 
-    if(e.key == 'w'){
+    if(e.key == 'w' && !cruiseControl){
         client.publish('/smartcar/control/throttle', '0')
         manual[e.key] = false;
     }
     if(e.key == 's'){
-        client.publish('/smartcar/control/throttle', '0') 
+        client.publish('/smartcar/control/throttle', '0')
+        cruiseControl = false; 
     } 
     if(e.key == 'a'){
         client.publish('/smartcar/control/steering', '0') 
@@ -107,7 +120,7 @@ function updateGamepad(){
                 if(button.pressed == true){
                     console.log(button, gp.buttons.indexOf(button));
                     client.publish('/smartcar/control/buttons', String(gp.buttons.indexOf(button)))
-                }
+                }   
             })
             if(gp.axes[2] >= 0.2 || gp.axes[2] <= -0.2) {
                 console.log(gp.axes[2], "right X");
