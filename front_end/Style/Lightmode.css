@@ -115,6 +115,7 @@ html {
 .status {
   text-align: left!important;
   display: block;
+  width: 100%;
   float: left!important;
 }
 
