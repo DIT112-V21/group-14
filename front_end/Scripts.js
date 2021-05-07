@@ -6,7 +6,7 @@ var stop = false;
 var frameCount = 0;
 var $results = $("#results");
 var fps, fpsInterval, startTime, now, then, elapsed;
-let x, y = false;  //this is so that the controller doesn't send inputs when it's not in use 
+let x, y = false;  //this is so that the controller doesn't send inputs when it's not in use
 
 // Variables required for manual drive mode
 var manualShift = false;
@@ -18,7 +18,6 @@ var throttlePerGear = 100 / maxGear;
 
 var cruiseControl = false;
 
-
 const background = document.querySelector('html')
 background.addEventListener('keydown', (e)=> {
     //Checks the mode upon pressing W
@@ -26,25 +25,25 @@ background.addEventListener('keydown', (e)=> {
         if(manualShift){
             client.publish('/smartcar/control/throttle', String(currentGear * throttlePerGear))
         } else {
-            client.publish('/smartcar/control/throttle', '100')   
+            client.publish('/smartcar/control/throttle', '100')
         }
         manual[e.key] = true;
     }
-    
+
     if(e.key == 's'){
         client.publish('/smartcar/control/throttle', '-100')
-    }  
+    }
     if (e.key == 'a'){
         client.publish('/smartcar/control/steering', '-45')
-    }  
+    }
     if (e.key == 'd'){
         client.publish('/smartcar/control/steering', '45')
-    } 
+    }
 })
 
 
 background.addEventListener('keyup', e => {
-    //Activates/Deactivates cruise control if K is pressed 
+    //Activates/Deactivates cruise control if K is pressed
     if(e.key == 'c'){
         if(!cruiseControl){
             cruiseControl = true;
@@ -88,11 +87,11 @@ background.addEventListener('keyup', e => {
     }
     if(e.key == 's'){
         client.publish('/smartcar/control/throttle', '0')
-        cruiseControl = false; 
-    } 
+        cruiseControl = false;
+    }
     if(e.key == 'a'){
-        client.publish('/smartcar/control/steering', '0') 
-    }  
+        client.publish('/smartcar/control/steering', '0')
+    }
     if(e.key == 'd'){
         client.publish('/smartcar/control/steering', '0')
     }
@@ -120,7 +119,7 @@ function updateGamepad(){
                 if(button.pressed == true){
                     console.log(button, gp.buttons.indexOf(button));
                     client.publish('/smartcar/control/buttons', String(gp.buttons.indexOf(button)))
-                }   
+                }
             })
             if(gp.axes[2] >= 0.2 || gp.axes[2] <= -0.2) {
                 console.log(gp.axes[2], "right X");
@@ -130,7 +129,7 @@ function updateGamepad(){
                 client.publish('/smartcar/control/steering', '0');
                 x = false
             }
-            
+
             if(gp.axes[3] >= 0.2 || gp.axes[3] <= -0.2) {
                 console.log(gp.axes[3], "right Y (inverted)");
                 client.publish('/smartcar/control/throttle', String(gp.axes[3]*-100));
@@ -173,8 +172,18 @@ client.on('message', function (topic, message) {
             dstIndex += 4;
         }
         ctx.putImageData(mImgData, 0, 0);
+}
 
-    } else {
-        console.log(topic.toString(), message.toString());
-    }
+     if (topic.includes('speed')) {
+         var speedText = parseFloat(message)
+         document.getElementById('speed').innerHTML = "Speed: " +  speedText + " m/s";
+      }
+     if (topic.includes('gyro')) {
+        var angleText = parseFloat(message)
+        document.getElementById('angle').innerHTML = "Angle: " +  angleText;
+      }
+     if (topic.includes('distance')) {
+       var distanceText = parseFloat(message)/100
+       document.getElementById('distance').innerHTML = "Distance: " +  distanceText + " m";
+      }
 })
