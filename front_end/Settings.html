@@ -9,35 +9,39 @@
 <body class="dynamic_background_colour">
   <div class="dynamic_other_colour">  </div>
 
-
+    <div class="back-button-container">
     <a href="mainMenu.html"><img class="back-button" src="img/back-button.png" alt="button"></a>
+    </div><br>
 
-  
-    <h2 id="text-settings">Settings</h2>
-    <p id="music-text">Mute Music</p>
-    <div class="container">
-      <label class="switch">
+    <div class="header-text">
+      <h2 id="text-settings">Settings</h2>
+    </div>
+
+    <div class="settings-container">
+      <div class="input-container">
+    <p class="music-text">Mute Music</p>
+      <label class="switch"><br>
         <input type="checkbox" id = "music-toggle" onclick="musicControl()">
         <span class="slider"></span>
       </label>
     </div>
-    <br>
-    <br>
-    <br>
-    <p id="music-text">Dark mode</p>
-    <div class="container">
-      <label class="switch">
+
+    <div class="input-container">
+    <p class="music-text">Dark mode</p>
+      <label class="switch"><br>
         <input type="checkbox" id = "darkmode-checkbox" onclick = "styleControl()">
-        <span class="slider"></span>
+        <span class="slider"></span> 
       </label>
-    </div>
-    <br>
-    <br>
-    <p id="music-text">Volume</p>
-    <div id="volumeslider"></div>
+      </div>
+
+      <div class="input-container">
+      <p class="music-text volume-text">Volume</p>
+      <div id="volumeslider">
         <input type="range" min="0" max="100" value="50" class="container" id="volume">
-    </hr>
-    <br>
+      </div>
+      </div>
+    </div>
+
   <img id="xbox-controller"src="img/xbox-controller.png" alt="xbox-controller">
 
 </body>
