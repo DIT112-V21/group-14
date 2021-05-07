@@ -16,6 +16,7 @@ var maxGear = 5;
 //Maximum throttle (100) divided by maximum gear (5) currently gives us 20 throttle per gear
 var throttlePerGear = 100 / maxGear;
 
+var cruiseControl = false;
 
 const background = document.querySelector('html')
 background.addEventListener('keydown', (e)=> {
@@ -80,7 +81,7 @@ background.addEventListener('keyup', e => {
         client.publish('/smartcar/control/throttle', String(currentGear * throttlePerGear))
     }
 
-    if(e.key == 'w'){
+    if(e.key == 'w' && !cruiseControl){
         client.publish('/smartcar/control/throttle', '0')
         manual[e.key] = false;
     }
