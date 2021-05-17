@@ -15,20 +15,7 @@ function createWindow () {
     },
   })
 
-  const child = new BrowserWindow({
-    icon: 'img/darkness_mcCroc.png',
-    autoHideMenuBar: true,
-    width: 1209,
-    height: 825,
-    resizable:false,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true,
-      contextIsolation: false
-    },
-  })
   win.loadFile('index.html')
-  child.loadFile('display_object_detection.html')
 }
 
 
