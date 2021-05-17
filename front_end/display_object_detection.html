@@ -10,18 +10,16 @@
 
   <div class="dynamic_other_colour">
   </div>
-  <div class="back-button-container">
+  <div class="back-button-container" style="visibility: hidden;">
     <a href="mainMenu.html"><img class="back-button" src="img/back-button.png" alt="button"></a>
   </div>
   
   <div class="dynamic_status_information">
-   <p class="status", id="speed">Speed: 0m/s</p>
-   <p class="status", id="angle">Angle: 0</p>
-   <p class="status", id="distance">Distance: 0 m</p>
-   <p class="status", id="charge">Charge: 100%</p>
-   <a href="display_object_detection.html">AI</a>
+   <p class="status", id="speed">AI Camera: On</p>
+   <p class="status", id="speed">Auto refresh: On</p>
+
   </div>
-  <canvas id="backup-camera" width="640" height="480"></canvas>
+  <img id="AI-camera" src="../machine-learning/models/research/object_detection/output.png" width="640" height="480"></img>
 
 </div>
 
@@ -36,5 +34,6 @@ Your browser does not support the music element.
 <script src="styleToggling.js"></script>
 <script type="module" src="Scripts.js"></script>
 <script src="onLoad.js"></script>
+<script src="autoReload.js"></script>
 
 </html>

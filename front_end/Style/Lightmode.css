@@ -308,6 +308,8 @@ input:checked + .slider:before
   top: 30px;
   right: 320px;
 }
+
+
 #backup-camera{
   width: 65%;
   height: 665px;
@@ -317,6 +319,14 @@ input:checked + .slider:before
   z-index: 1;
 }
 
+#AI-camera {
+  width: 65%;
+  height: 665px;
+  position: relative;
+  right: 20px;
+  top: 65px;
+  z-index: 1;
+}
 
 .dark-mode-switch{
   position: relative;
