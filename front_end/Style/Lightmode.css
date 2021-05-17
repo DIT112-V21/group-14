@@ -319,15 +319,6 @@ input:checked + .slider:before
   z-index: 1;
 }
 
-#AI-camera {
-  width: 65%;
-  height: 665px;
-  position: relative;
-  right: 20px;
-  top: 65px;
-  z-index: 1;
-}
-
 .dark-mode-switch{
   position: relative;
   z-index: 1000;
