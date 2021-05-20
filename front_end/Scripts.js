@@ -68,6 +68,7 @@ background.addEventListener('keyup', e => {
         //Limits the max gear
         if(currentGear < maxGear) {
             currentGear++;
+            gearShiftAudio();
         }
         client.publish('/smartcar/control/throttle', String(currentGear * throttlePerGear))
     }
@@ -77,6 +78,7 @@ background.addEventListener('keyup', e => {
         //Limits the minimum gear to 1
         if(currentGear > 1){
             currentGear--;
+            gearShiftAudio();
         }
         client.publish('/smartcar/control/throttle', String(currentGear * throttlePerGear))
     }
@@ -97,7 +99,12 @@ background.addEventListener('keyup', e => {
     }
 })
 
-
+function gearShiftAudio() {
+    let getGearAudio = "sfx_gearShift" + currentGear;
+    let sfx_gearShift = document.getElementById(getGearAudio);
+    sfx_gearShift.volume = 0.15;
+    sfx_gearShift.play()
+}
 
 function startGamepad(fps) {  //limits the output speed
     fpsInterval = 1000 / fps;
@@ -105,6 +112,8 @@ function startGamepad(fps) {  //limits the output speed
     startTime = then;
     updateGamepad();
 }
+
+
 
 
 function updateGamepad(){
