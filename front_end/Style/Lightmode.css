@@ -449,3 +449,7 @@ form button:hover {
   opacity: 1;
   display: block;
 }
+
+#ai-Button {
+  background-color: #19D3DA;
+}
