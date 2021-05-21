@@ -36,5 +36,5 @@ function clickSound(){
   try{
     let sound = document.getElementById("pop");
     sound.play();
-  } catch {e}
+  }catch (e) {}
 }
