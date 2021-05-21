@@ -22,6 +22,7 @@ function swapStyleSheet(sheet) {
 }
 
 function styleControl(){
+  clickSound();
   if (darkmodeCheckbox.checked == true) {
     sessionStorage.setItem("styleSetting", "darkmode");
     styleStart();
@@ -29,4 +30,11 @@ function styleControl(){
     sessionStorage.setItem("styleSetting", "lightmode");
     styleStart();
   }
+}
+
+function clickSound(){
+  try{
+    let sound = document.getElementById("pop");
+    sound.play();
+  }catch (e) {}
 }
