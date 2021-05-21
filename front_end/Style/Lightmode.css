@@ -2,7 +2,7 @@
   font-family: CIND;
   src: url(fonts/CIND.otf);
 
-  
+
 }
 @font-face {
   font-family: NovaMono;
@@ -421,4 +421,31 @@ input:checked + .slider:before
 }
 form button:hover {
   background-color: #19D3DA;
+}
+
+.help_status {
+  position: relative;
+  display: inline-block;
+}
+
+.help_status .status_help {
+  content: "";
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  opacity: 0;
+  transition: opacity 2s;
+  position: absolute;
+  top: 20px;
+  left: 40px;
+}
+
+.help_status:hover .status_help{
+  visibility: visible;
+  opacity: 1;
+  display: block;
 }

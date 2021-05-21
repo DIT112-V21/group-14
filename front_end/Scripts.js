@@ -195,4 +195,15 @@ client.on('message', function (topic, message) {
        var distanceText = parseFloat(message)/100
        document.getElementById('distance').innerHTML = "Distance: " +  distanceText + " m";
       }
+      if (manualShift || !manualShift) {
+       document.getElementById('manual').innerHTML = "Manual Mode: " +  manualShift;
+     }
+     if (currentGear ) {
+       if (manualShift == false)
+     {
+        document.getElementById('gear').innerHTML = "Gear: Automatic" ;
+     }else {
+          document.getElementById('gear').innerHTML = "Gear: " +  currentGear;
+      }
+     }
 })
