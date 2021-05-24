@@ -213,11 +213,16 @@ client.on('message', function (topic, message) {
     if (manualShift || !manualShift) {
         document.getElementById('manual').innerHTML = "Manual Mode: " +  manualShift;
     }
-    if (currentGear ) {
+    if (currentGear) {
         if (manualShift == false) {
             document.getElementById('gear').innerHTML = "Gear: Automatic" ;
         } else {
             document.getElementById('gear').innerHTML = "Gear: " +  currentGear;
         }
+    }
+    if(cruiseControl){
+        document.getElementById('cruise').innerHTML = "Cruise Control: Active";
+    } else {
+        document.getElementById('cruise').innerHTML = "Cruise Control: Disabled";
     }
 })

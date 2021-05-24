@@ -17,7 +17,7 @@
   <div class="dynamic_status_information">
     <div class="help_status">
       <p class="status" id="speed"><u>Speed: 0m/s</u></p>
-      <span class="status_help">Controls: W,A,S,D</span>
+      <span class="status_help">Controls: W, A, S, D</span>
     </div>
 
     <p class="status" id="angle">Angle: 0</p>
@@ -28,9 +28,16 @@
     </div>
 
     <p class="status" id="gear">Current gear:</p>
+
     <p class="status" id="distance">Distance: 0 m</p>
+
+    <div class="help_status">
+      <p class="status" id="cruise"><u>Cruise Control: Disabled</u></p>
+      <span class="status_help">C: ON/OFF</span>
+    </div>
+
     <p class="status" id="charge">Charge: 100%</p>
-    <button id="ai-Button" type="button">Ai view</button>
+    <button id="ai-Button" type="button" onclick="changeAIButtonText()">Normal View</button>
    </div>
 
   <canvas id="backup-camera" width="640" height="480"></canvas>
@@ -73,5 +80,6 @@ Your browser does not support the music element.
 <script src="styleToggling.js"></script>
 <script type="module" src="Scripts.js"></script>
 <script src="onLoad.js"></script>
+<script src="change.js"></script>
 
 </html>
