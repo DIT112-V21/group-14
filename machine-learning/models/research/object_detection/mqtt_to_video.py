@@ -18,12 +18,10 @@ NUM_CLASSES = 1
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
-    client.subscribe("/smartcar/sensors/camera")
+    client.subscribe("/smartcar/sensors/ai/camera_raw")
 
 def on_message(client, userdata, msg):
     img = Image.new('RGB', (640, 480))
-    width = 640
-    height = 480
     srcIndex = 0
 
     for y in range(480):
@@ -46,8 +44,6 @@ def on_message(client, userdata, msg):
         (im_width, im_height) = image.size
         return np.array(image.getdata()).reshape(
             (im_height, im_width, 3)).astype(np.uint8)
-    IMAGE_SIZE = (12, 8)
-
 
     with detection_graph.as_default():
         with tf.Session(graph=detection_graph) as sess:
@@ -69,7 +65,7 @@ def on_message(client, userdata, msg):
                 category_index,
                 use_normalized_coordinates=True)
 
-        client.publish('/smartcar/sensors/camera_ai', str(image_np.ravel()))
+        client.publish('/smartcar/sensors/ai/camer_ai', bytearray(image_np))
 
 client = mqtt.Client()
 client.on_connect = on_connect

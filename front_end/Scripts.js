@@ -15,6 +15,8 @@ var currentGear = 1; // Car's default gear is 1
 var maxGear = 5;
 //Maximum throttle (100) divided by maximum gear (5) currently gives us 20 throttle per gear
 var throttlePerGear = 100 / maxGear;
+let aiSpeed = 0;
+var ai = false;
 
 var cruiseControl = false;
 
@@ -106,14 +108,19 @@ function gearShiftAudio() {
     sfx_gearShift.play()
 }
 
+
+document.getElementById('ai-Button').addEventListener('click', e => {
+    if(ai) ai = false;
+    else if(!ai) ai = true;
+})
+
+
 function startGamepad(fps) {  //limits the output speed
     fpsInterval = 1000 / fps;
     then = Date.now();
     startTime = then;
     updateGamepad();
 }
-
-
 
 
 function updateGamepad(){
@@ -154,56 +161,68 @@ function updateGamepad(){
 startGamepad(5)
 
 
+function camera(message){
+    let canvas = document.getElementById('backup-camera');
+    let ctx = canvas.getContext('2d');
+    var srcIndex = 0, dstIndex = 0;
+    let width = 640;
+    let height = 480;
+    var mImgData = ctx.createImageData(width, height);
+    for ( let i = 0; i < width * height; i ++) {
+        mImgData.data[dstIndex] = message[srcIndex];            // r
+        mImgData.data[dstIndex + 1] = message[srcIndex + 1];    // g
+        mImgData.data[dstIndex + 2] = message[srcIndex + 2];    // b
+        mImgData.data[dstIndex + 3] = 255; // 255 = 0xFF - constant alpha, 100% opaque
+        srcIndex += 3;
+        dstIndex += 4;
+    }
+    ctx.putImageData(mImgData, 0, 0);
+}
+
 
 client.on('connect', () =>{
     client.subscribe('/smartcar/sensors/#', e => {})
 })
 
-//https://www.youtube.com/watch?v=nMUMZ5YRxHI
-//https://stackoverflow.com/questions/21300921/how-to-convert-byte-array-to-image-in-javascript/21302108
-//https://stackoverflow.com/questions/66672867/convert-framebuffer-dump-to-imagebmp-png-etc
 client.on('message', function (topic, message) {
-    // message is Buffer
-    if(topic.includes('camera')) {
-        let canvas = document.getElementById('backup-camera');
-        let ctx = canvas.getContext('2d');
-        var srcIndex = 0, dstIndex = 0;
-        let width = 640;
-        let height = 480;
-
-        var mImgData = ctx.createImageData(width, height);
-        for ( let i = 0; i < width * height; i ++) {
-            mImgData.data[dstIndex] = message[srcIndex];            // r
-            mImgData.data[dstIndex + 1] = message[srcIndex + 1];    // g
-            mImgData.data[dstIndex + 2] = message[srcIndex + 2];    // b
-            mImgData.data[dstIndex + 3] = 255; // 255 = 0xFF - constant alpha, 100% opaque
-            srcIndex += 3;
-            dstIndex += 4;
+    if(topic.includes('camera')){
+        aiSpeed ++;
+        if(aiSpeed == 30) {  //slow the feed for the camera vision
+            client.publish('/smartcar/sensors/ai/camera_raw', message) 
+            aiSpeed = 0;
         }
-        ctx.putImageData(mImgData, 0, 0);
-}
-
-     if (topic.includes('speed')) {
-         var speedText = parseFloat(message)
-         document.getElementById('speed').innerHTML = "Speed: " +  speedText + " m/s";
-      }
-     if (topic.includes('gyro')) {
+    }
+    if(topic.includes('camera') && !ai) {
+        camera(message)
+    }
+    if(topic.includes('camer_ai') && ai){  //typo on purpose to avoid mqtt conflicts 
+        camera(message)
+    }
+    if (topic.includes('speed')) {
+        var speedText = parseFloat(message)
+        document.getElementById('speed').innerHTML = "Speed: " +  speedText + " m/s";
+     }
+    if (topic.includes('gyro')) {
         var angleText = parseFloat(message)
         document.getElementById('angle').innerHTML = "Angle: " +  angleText;
-      }
-     if (topic.includes('distance')) {
-       var distanceText = parseFloat(message)/100
-       document.getElementById('distance').innerHTML = "Distance: " +  distanceText + " m";
-      }
-      if (manualShift || !manualShift) {
-       document.getElementById('manual').innerHTML = "Manual Mode: " +  manualShift;
      }
-     if (currentGear ) {
-       if (manualShift == false)
-     {
-        document.getElementById('gear').innerHTML = "Gear: Automatic" ;
-     }else {
-          document.getElementById('gear').innerHTML = "Gear: " +  currentGear;
-      }
+    if (topic.includes('distance')) {
+        var distanceText = parseFloat(message)/100
+        document.getElementById('distance').innerHTML = "Distance: " +  distanceText + " m";
      }
+    if (manualShift || !manualShift) {
+        document.getElementById('manual').innerHTML = "Manual Mode: " +  manualShift;
+    }
+    if (currentGear) {
+        if (manualShift == false) {
+            document.getElementById('gear').innerHTML = "Gear: Automatic" ;
+        } else {
+            document.getElementById('gear').innerHTML = "Gear: " +  currentGear;
+        }
+    }
+    if(cruiseControl){
+        document.getElementById('cruise').innerHTML = "Cruise Control: Active";
+    } else {
+        document.getElementById('cruise').innerHTML = "Cruise Control: Disabled";
+    }
 })
