@@ -1,24 +1,21 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
     icon: 'img/darkness_mcCroc.png',
     autoHideMenuBar: true,
     width: 1209,
     height: 825,
-    resizable:false,
+    resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
       contextIsolation: false
     },
   })
-
   win.loadFile('index.html')
 }
-
-
 
 app.whenReady().then(() => {
   createWindow()
