@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>Kachow</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <link rel="stylesheet" href="Style/Lightmode.css">
-</head>
-<body>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'
+      'unsafe-inline';" />
+    <link rel="stylesheet" href="style/styles.css">
+  </head>
 
-<div class="bg"></div>
-<div class="bg bg2"></div>
-<div class="bg bg3">
-</div>
-
-<a href="easter-egg.html"><img class="the_croc" src="img/darkness_mcCroc.png" alt="button"></a>
-
-   <h1 id="app-name">Welcome to the virtual car app <br> Codename: Darkness McCroc</h1>
+  <body>
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+  
+    <a href="easter-egg.html"><img class="the_croc"
+      src="img/darkness_mcCroc.png" alt="button"></a>
+  
+    <h1 id="app-name">Welcome to the virtual car app <br> Codename: Darkness
+      McCroc</h1>
+      
     <div>
-
-        <form class="login-form">
-                    <input type="text" placeholder="Username" required>
-                    <input type="password" placeholder="Password"  required>
-                    <button type="submit" id="login-button" formaction="mainMenu.html">Login</button>
-        </form>
+      <form class="login-form">
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit" id="login-button"
+          formaction="mainMenu.html">Login</button>
+      </form>
     </div>
-</body>
-<script>
-window.onload = sessionStorage.setItem("audioVolume", 0.25);
-window.onload = sessionStorage.setItem("audioLength", 1);
-window.onload = sessionStorage.setItem("musicOn", "unmuted");
-</script>
+  </body>
+
+  <script>
+    window.onload = sessionStorage.setItem("audioVolume", 0.25);
+    window.onload = sessionStorage.setItem("audioLength", 1);
+    window.onload = sessionStorage.setItem("musicOn", "unmuted");
+  </script>
+
 </html>
