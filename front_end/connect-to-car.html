@@ -1,39 +1,76 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" id = "pagestyle" href="Style/Lightmode.css">
-  <title></title>
-</head>
-<body>
-  <div class="dynamic_background_colour">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" id="pagestyle" href="style/styles.css">
+    <title></title>
+  </head>
 
-  <div class="dynamic_other_colour">
-  </div>
-  <div class="back-button-container">
-    <a href="mainMenu.html"><img class="back-button" src="img/back-button.png" alt="button"></a>
-  </div>
-  
-  <div class="dynamic_status_information">
-   <p class="status", id="speed">Speed: 0m/s</p>
-   <p class="status", id="angle">Angle: 0</p>
-   <p class="status", id="distance">Distance: 0 m</p>
-   <p class="status", id="charge">Charge: 100%</p>
-  </div>
-  <canvas id="backup-camera" width="640" height="480"></canvas>
+  <body>
+    <div class="dynamic_background_colour">
+      <div class="dynamic_other_colour"></div>
+      <div class="back-button-container">
+        <a href="mainMenu.html"><img class="back-button"
+            src="img/back-button.png" alt="button"></a>
+      </div>
+      <div class="dynamic_status_information">
+        <div class="help_status">
+          <p class="status" id="speed"><u>Speed: 0m/s</u></p>
+          <span class="status_help">Controls: W, A, S, D</span>
+        </div>
 
-</div>
+        <p class="status" id="angle">Angle: 0</p>
+        <div class="help_status">
+          <p class="status" id="manual"><u>Manual Mode: False </u></p>
+          <span class="status_help">M: ON <br> N: OFF <br> Shift: Up-gear <br>
+            Ctrl: Down-gear </span>
+        </div>
 
-</body>
+        <p class="status" id="gear">Current gear:</p>
+        <p class="status" id="distance">Distance: 0 m</p>
+        <div class="help_status">
+          <p class="status" id="cruise"><u>Cruise Control: Disabled</u></p>
+          <span class="status_help">C: ON/OFF</span>
+        </div>
 
-<audio id ="backgroundMusic" loop>
-  <source src="audio\music\runninginthe90sVaporwave.mp3" type="audio/mpeg">
-Your browser does not support the music element.
-</audio>
+        <p class="status" id="charge">Charge: 100%</p>
+        <br><br><br><br><br>
+        <canvas id="other-camera" width="640", height="480"></canvas>
+        <button id="ai-Button" type="button">Switch View</button>
+      </div>
 
-<script src="music.js"></script>
-<script src="styleToggling.js"></script>
-<script type="module" src="Scripts.js"></script>
-<script src="onLoad.js"></script>
+      <canvas id="backup-camera" width="640" height="480"></canvas>
+    </div>
+  </body>
+
+  <audio id="backgroundMusic" loop>
+    <source src="audio\music\Warmth.mp3" type="audio/mpeg">
+    Your browser does not support the music element.
+  </audio>
+  <audio id="sfx_gearShift5">
+    <source src="audio\gearShift5.mp3" type="audio/mpeg">
+    Your browser does not support the music element.
+  </audio>
+  <audio id="sfx_gearShift4">
+    <source src="audio\gearShift4.mp3" type="audio/mpeg">
+    Your browser does not support the music element.
+  </audio>
+  <audio id="sfx_gearShift3">
+    <source src="audio\gearShift3.mp3" type="audio/mpeg">
+    Your browser does not support the music element.
+  </audio>
+  <audio id="sfx_gearShift2">
+    <source src="audio\gearShift2.mp3" type="audio/mpeg">
+    Your browser does not support the music element.
+  </audio>
+  <audio id="sfx_gearShift1">
+    <source src="audio\gearShift1.mp3" type="audio/mpeg">
+    Your browser does not support the music element.
+  </audio>
+
+  <script src="scripts/music.js"></script>
+  <script src="scripts/styleToggling.js"></script>
+  <script type="module" src="scripts/control-and-camera.js"></script>
+  <script src="scripts/onLoad.js"></script>
 
 </html>

@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" id = "pagestyle" href="Style/Lightmode.css">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" id="pagestyle" href="style/styles.css">
+    <title></title>
+  </head>
 
-  <title></title>
-</head>
-<body class="dynamic_background_colour">
-  <div class="dynamic_other_colour">  </div>
-
+  <body class="dynamic_background_colour">
+    <div class="dynamic_other_colour"> </div>
     <div class="back-button-container">
-    <a href="mainMenu.html"><img class="back-button" src="img/back-button.png" alt="button"></a>
-    </div><br>
-
+      <a href="mainMenu.html"><img class="back-button" src="img/back-button.png"
+          alt="button"></a>
+    </div>
+    <br>
     <div class="header-text">
       <h2 id="text-settings">Settings</h2>
     </div>
 
     <div class="settings-container">
       <div class="input-container">
-    <p class="music-text">Mute Music</p>
-      <label class="switch"><br>
-        <input type="checkbox" id = "music-toggle" onclick="musicControl()">
-        <span class="slider"></span>
-      </label>
-    </div>
-
-    <div class="input-container">
-    <p class="music-text">Dark mode</p>
-      <label class="switch"><br>
-        <input type="checkbox" id = "darkmode-checkbox" onclick = "styleControl()">
-        <span class="slider"></span> 
-      </label>
+        <p class="music-text">Mute Music</p>
+        <label class="switch"><br>
+          <input type="checkbox" id="music-toggle" onclick="musicControl()">
+          <span class="slider"></span>
+        </label>
       </div>
 
       <div class="input-container">
-      <p class="music-text volume-text">Volume</p>
-      <div id="volumeslider">
-        <input type="range" min="0" max="100" value="50" class="container" id="volume">
+        <p class="music-text">Dark mode</p>
+        <label class="switch"><br>
+          <input type="checkbox" id="darkmode-checkbox" onclick="styleControl()">
+          <span class="slider"></span>
+        </label>
       </div>
+
+      <div class="input-container">
+        <p class="music-text volume-text">Volume</p>
+        <div id="volumeslider">
+          <input type="range" min="0" max="100" value="50" class="container"
+            id="volume">
+        </div>
       </div>
     </div>
+    <img id="xbox-controller" src="img/xbox-controller.png" alt="xbox-controller">
+  </body>
 
-  <img id="xbox-controller"src="img/xbox-controller.png" alt="xbox-controller">
+  <audio id="backgroundMusic" loop>
+    <source src="audio\music\elevatorbossnova.mp3" type="audio/mpeg">
+    Your browser does not support the music element.
+  </audio>
+  <audio id="pop">
+    <source src="audio\pop.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
 
-</body>
-<audio id ="backgroundMusic" loop>
-  <source src="audio\music\elevatorbossnova.mp3" type="audio/mpeg">
-Your browser does not support the music element.
-</audio>
-
-<script src="music.js"></script>
-<script src="styleToggling.js"></script>
-<script src="onLoad.js"></script>
+  <script src="scripts/music.js"></script>
+  <script src="scripts/styleToggling.js"></script>
+  <script src="scripts/onLoad.js"></script>
 </html>
