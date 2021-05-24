@@ -187,8 +187,17 @@ html {
   line-height: 110px;
   color: black;
   padding: 0px;
-
 }
+#text-credits {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 80px;
+  color: black;
+  padding: 0px;
+  margin-bottom: 35px;
+}
+
 .music-text{
   display: inline-block;
   font-style: normal;
@@ -200,9 +209,39 @@ html {
   margin-right: 0px;;
 }
 
+.rightcredits-text{
+  display: inline-block;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 13px;
+  color: black;
+  text-align: left;
+  max-width: 75%;
+  margin-right: 0px;
+  margin-top: 0px;
+}
+.leftcredits-text{
+  display: inline-block;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 13px;
+  color: black;
+  text-align: left;
+  max-width: 75%;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-left: 65%;
+}
+
 .settings-container {
   width: 100%;
   position: relative;
+  margin: auto;
+  display: block;
+}
+.credits-container {
+  width: 100%;
+  position: absolute;
   margin: auto;
   display: block;
 }
