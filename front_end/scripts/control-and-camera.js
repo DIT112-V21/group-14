@@ -147,10 +147,8 @@ function camera(message, canvasID) {
         srcIndex += 3;
         dstIndex += 4;
     }
-    ctx.putImageData(mImgData, 0, 0)
+    ctx.putImageData(mImgData, 0, 0);
 }
-
-
 
 client.on('connect', () => {
     client.subscribe('/smartcar/sensors/#', e => { })
@@ -168,7 +166,7 @@ client.on('message', function (topic, message) {
         camera(message, 'backup-camera');
     }
     if (topic.includes('camera') && ai){
-        camera(message, 'other-camera')
+        camera(message, 'other-camera');
     }
     if (topic.includes('camer_ai') && ai) {  //typo on purpose to avoid mqtt conflicts 
         camera(message, 'backup-camera');
