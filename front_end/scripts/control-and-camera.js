@@ -3,7 +3,7 @@ var client = mqtt.connect('mqtt://localhost')
 let $ = require('jquery')
 
 let fpsInterval, startTime, now, then, elapsed;
-let x, y = false;  //Limit the controller's input
+let xAxis, yAxis = false;  //Limit the controller's input
 var manualShift = false;
 var manual = {};
 var currentGear = 1; 
@@ -103,23 +103,23 @@ function updateGamepad() {
         let gp = navigator.getGamepads()[0];
         if (gp !== null) {
             gp.buttons.forEach(button => {  //curently not used 
-                if (button.pressed == true) {
+                if (button.pressed) {
                     client.publish('/smartcar/control/buttons', String(gp.buttons.indexOf(button)));
                 }
             })
             if (gp.axes[2] >= 0.2 || gp.axes[2] <= -0.2) {
                 client.publish('/smartcar/control/steering', String(gp.axes[2] * 45));
-                x = true;
-            } else if ((gp.axes[2] < 0.2 || gp.axes[2] > -0.2) && x == true) {
+                xAxis = true;
+            } else if ((gp.axes[2] < 0.2 || gp.axes[2] > -0.2) && xAxis) {
                 client.publish('/smartcar/control/steering', '0');
-                x = false;
+                xAxis = false;
             }
             if (gp.axes[3] >= 0.2 || gp.axes[3] <= -0.2) {
                 client.publish('/smartcar/control/throttle', String(gp.axes[3] * -100));
-                y = true;
-            } else if ((gp.axes[3] < 0.2 || gp.axes[3] > -0.2) && y == true) {
+                yAxis = true;
+            } else if ((gp.axes[3] < 0.2 || gp.axes[3] > -0.2) && yAxis) {
                 client.publish('/smartcar/control/throttle', '0');
-                y = false;
+                yAxis = false;
             }
         }
     }
@@ -190,7 +190,7 @@ client.on('message', function (topic, message) {
         document.getElementById('manual').innerHTML = "Manual Mode: " + manualShift;
     }
     if (currentGear) {
-        if (manualShift == false) {
+        if (!manualShift) {
             document.getElementById('gear').innerHTML = "Gear: Automatic";
         } else {
             document.getElementById('gear').innerHTML = "Gear: " + currentGear;

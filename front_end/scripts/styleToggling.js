@@ -23,7 +23,7 @@ function swapStyleSheet(sheet) {
 
 function styleControl() {
   clickSound();
-  if (darkmodeCheckbox.checked == true) {
+  if (darkmodeCheckbox.checked) {
     sessionStorage.setItem("styleSetting", "darkmode");
     styleStart();
   } else {

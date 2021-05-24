@@ -30,7 +30,7 @@ window.onbeforeunload = function musicUpdate() {
 function musicControl() {
   clickSound();
   let muteCheckbox = document.getElementById("music-toggle");
-  if (muteCheckbox.checked == true) {
+  if (muteCheckbox.checked) {
     sessionStorage.setItem("musicOn", "muted");
     tune.pause();
   } else {
