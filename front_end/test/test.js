@@ -27,13 +27,13 @@ describe("Application launch test", function () {
 		}
 	});
 
-	it('Application compiles correctly', function () {
+	it('Application compiles correctly.', function () {
 		return this.app.client.getWindowCount().then(function (count) {
 			assert.equal(count, 1)
 		})
 	})
 
-	it('Content displayed correctly', function () {
+	it('Content displayed correctly.', function () {
 		return this.app.client.browserWindow.getTitle().then(function (title) {
 			assert.equal(title, 'Kachow')
 		})
