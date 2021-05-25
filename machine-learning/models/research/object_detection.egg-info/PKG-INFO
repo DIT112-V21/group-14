@@ -1,0 +1,9 @@
+Metadata-Version: 1.2
+Name: object-detection
+Version: 0.1
+Summary: Tensorflow Object Detection Library with TF1.0
+Home-page: UNKNOWN
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >3.6
