@@ -1,22 +1,34 @@
 # Group-14 
 
-## What are we making?
-We are making an Arduino-powered car controllable through a keyboard and/or a controller. 
-We will later add computer vision to it by taking screenshots and analyzing them, allowing the car to recognize the elements in front of it.
+**What is this application?**
+We made an Arduino-powered car controllable through a keyboard and controller, such as an Xbox one. It also uses object detection to analyze images, allowing the car to recognize the trees in front of it. 
 
-## Why are we making it?
-To experiment with computer vision to help conceptualize self-driving cars.
+We implemented the interface to be user friendly and elegant, making it easy for anyone to use our app. 
 
-In addition, we are making it to test/improve our coding skills and because we felt it’d be manageable and satisfying to complete, a fair challenge.
+**Why did we make it?**
+We did this to experiment with computer vision and machine learning to help conceptualize self-driving cars. This helped us greatly improve our coding skills by using many new and different coding languages. 
 
-## What problem does it solve?
-In current times boredom is the biggest problem for most of us. The goal of our app is to overcome that problem by letting the user explore a virtual environment with a controllable car.
+**What problem does it solve?**
+We used machine learning and communications between different languages in this application to learn and experience how an application works. This gave us insight on the basics of applications to help us innovate in the industry in the future.
 
-## Technical information
-**How will we make it?**
+As it is now the application can be used to drive a small car around for e.g. delivering small packages whilst informing the driver about obstacles. 
 
-Our aim is to develop a desktop application that will be built with Electron (JavaScript). The app itself will allow the user to control the car.
+**How did we make it?**
+The application was built using Electron on top of JavaScript. We chose to do it this way because we could make use of HTML and CSS for the user interface, which are very easy to use. 
 
-Car’s logic will mainly rely on C++. 
+Car’s logic is implemented in JavaScript and the car is controlled by C++ by sending commands through a MQTT broker.
 
-We will use the OpenCV library to analyze and process the car's surroundings. Python will be used for this part of the project.
+We used Tensorflow in Python to process the images. We chose to use Tensorflow because it has great documentation and because of its speed.
+
+**Video**
+link
+
+**Getting Started**
+-> Node.js
+-> SMCE
+-> MQTT
+	-> Suggestion: MQTT Explorer
+-> Anaconda (Python)
+-> Tensorflow
+
+Setup information can be found on our wiki.
