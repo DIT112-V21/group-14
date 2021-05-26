@@ -4,7 +4,7 @@ function styleStart() {
   dynamicClasses = document.querySelectorAll('[class^=dynamic]')
   dynamicClasses.forEach(element => {
     var relevantClass = element.className;
-    if (sessionStorage.getItem("styleSetting") == "darkmode") {
+    if (localStorage.getItem("styleSetting") == "darkmode") {
       relevantClass = element.className + "-dark";
       try {
         darkmodeCheckbox.checked = true;
@@ -24,10 +24,10 @@ function swapStyleSheet(sheet) {
 function styleControl() {
   clickSound();
   if (darkmodeCheckbox.checked) {
-    sessionStorage.setItem("styleSetting", "darkmode");
+    localStorage.setItem("styleSetting", "darkmode");
     styleStart();
   } else {
-    sessionStorage.setItem("styleSetting", "lightmode");
+    localStorage.setItem("styleSetting", "lightmode");
     styleStart();
   }
 }
