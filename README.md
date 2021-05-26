@@ -31,10 +31,15 @@ link
 **Getting Started**
 
 -> Node.js
+
 -> SMCE
+
 -> MQTT
-	-> Suggestion: MQTT Explorer
+
+-> Suggestion: MQTT Explorer
+
 -> Anaconda (Python)
+
 -> Tensorflow
 
 Setup information can be found on our wiki.
