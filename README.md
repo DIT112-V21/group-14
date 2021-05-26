@@ -6,7 +6,7 @@ We made an Arduino-powered car controllable through a keyboard and controller, s
 
 We implemented the interface to be user friendly and elegant, making it easy for anyone to use our app. 
 
-**Why did we make it?**
+## Why did we make it? ##
 
 We did this to experiment with computer vision and machine learning to help conceptualize self-driving cars. This helped us greatly improve our coding skills by using many new and different coding languages. 
 
