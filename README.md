@@ -43,3 +43,5 @@ link
 * Tensorflow
 
 Setup information can be found on our wiki.
+
+![alt text]( https://github.com/DIT112-V21/group-14/blob/master/front_end/img/group-photo.png )
