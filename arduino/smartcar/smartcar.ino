@@ -69,7 +69,8 @@ void loop() {
     if (currentTime - previousFrame >= 65) {
       previousFrame = currentTime;
       Camera.readFrame(frameBuffer.data());
-      mqtt.publish("/smartcar/sensors/camera", frameBuffer.data());
+      int bufferSize = (int) frameBuffer.size();
+      mqtt.publish("/smartcar/sensors/camera", frameBuffer.data(), bufferSize);
     }
 #endif
     static auto previousTransmission = 0;
