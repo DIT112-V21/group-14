@@ -3,19 +3,19 @@ var output = document.getElementById("demo");
 
 try {
   var slider = document.getElementById("volume");
-  slider.value = sessionStorage.getItem("audioVolume") * 100;
+  slider.value = localStorage.getItem("audioVolume") * 100;
   slider.oninput = function () {
     let percentageVolume = this.value / 100;
     tune.volume = percentageVolume;
-    sessionStorage.setItem("audioVolume", percentageVolume);
+    localStorage.setItem("audioVolume", percentageVolume);
   }
 } catch (e) { }
 
 function musicStart() {
-  tune.currentTime = sessionStorage.getItem("audioLengthSettings");
-  tune.volume = sessionStorage.getItem("audioVolume");
-  if (sessionStorage.getItem("musicOn") == "muted") {
-    tune.autoplay = 0
+  tune.currentTime = sessionStorage.getItem("audioLength");
+  tune.volume = localStorage.getItem("audioVolume");
+  if (localStorage.getItem("musicOn") == "muted") {
+    tune.autoplay = 0;
     try {
       let muteCheckbox = document.getElementById("music-toggle");
       muteCheckbox.checked = true;
@@ -24,17 +24,17 @@ function musicStart() {
 }
 
 window.onbeforeunload = function musicUpdate() {
-  sessionStorage.setItem("audioLengthSettings", tune.currentTime);
+  sessionStorage.setItem("audioLength", tune.currentTime);
 }
 
 function musicControl() {
   clickSound();
   let muteCheckbox = document.getElementById("music-toggle");
   if (muteCheckbox.checked) {
-    sessionStorage.setItem("musicOn", "muted");
+    localStorage.setItem("musicOn", "muted");
     tune.pause();
   } else {
-    sessionStorage.setItem("musicOn", "unmuted");
+    localStorage.setItem("musicOn", "unmuted");
     tune.play();
   }
 }

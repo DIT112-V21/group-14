@@ -30,9 +30,17 @@
   </body>
 
   <script>
-    window.onload = sessionStorage.setItem("audioVolume", 0.25);
-    window.onload = sessionStorage.setItem("audioLength", 1);
-    window.onload = sessionStorage.setItem("musicOn", "unmuted");
+    // localStorage.setItem("firstAppInit", 1) // 0=false, 1=true
+    window.onload = function setInitialValues() {
+      sessionStorage.setItem("audioLength", 1);
+    if (localStorage.getItem("firstAppInit") == null) {
+      localStorage.setItem("audioVolume", 0.25);
+      localStorage.setItem("musicOn", "unmuted");
+      // App has been launced for the first time
+      localStorage.setItem("firstAppInit", 0);
+    }
+  }
+
   </script>
 
 </html>
