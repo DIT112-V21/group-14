@@ -15,7 +15,7 @@ function musicStart() {
   tune.currentTime = sessionStorage.getItem("audioLength");
   tune.volume = localStorage.getItem("audioVolume");
   if (localStorage.getItem("musicOn") == "muted") {
-    tune.autoplay = 0
+    tune.autoplay = 0;
     try {
       let muteCheckbox = document.getElementById("music-toggle");
       muteCheckbox.checked = true;
