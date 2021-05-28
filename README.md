@@ -1,5 +1,7 @@
 # Group-14 
 
+<p align="center"><img src="https://user-images.githubusercontent.com/50659238/119976811-f24d3a80-bfb7-11eb-9edc-e22ecee6132b.png" width="480" height="auto"></p>
+
 Short decription to be added here!
 
 * [What is this application?](#what-is-this-application)
@@ -64,4 +66,4 @@ From left to right:
 * [Erdem Halil](https://github.com/erdemhalil)
 * [Taofik Arnouk](https://github.com/TaofikArnouk)
 
-![alt text]( https://github.com/DIT112-V21/group-14/blob/master/front_end/img/group-photo.png )
+<p align="center"><img src="https://github.com/DIT112-V21/group-14/blob/master/front_end/img/group-photo.png" width="900" height="auto"></p>
