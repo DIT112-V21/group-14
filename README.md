@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://user-images.githubusercontent.com/50659238/119976811-f24d3a80-bfb7-11eb-9edc-e22ecee6132b.png" width="480" height="auto"></p>
 
-Short decription to be added here!
+<h1 align="center">Welcome to our repository!</h1>
 
 * [What is this application?](#what-is-this-application)
 * [Why did we make it?](#why-did-we-make-it)
