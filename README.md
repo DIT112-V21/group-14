@@ -39,8 +39,7 @@ Car’s logic is implemented in JavaScript and the car is controlled by C++ by s
 We used Tensorflow in Python to process the images. We chose to use Tensorflow because it has great documentation and because of its speed.
 
 ## Video
-
-link
+[Click here to view the video.](https://youtu.be/FrwWxrGJxxQ)
 
 ## Getting Started
 
